@@ -1,0 +1,2 @@
+# TallinnaRakenduslikKolledz_Artur_Vartsaba
+Artur Vartsaba
