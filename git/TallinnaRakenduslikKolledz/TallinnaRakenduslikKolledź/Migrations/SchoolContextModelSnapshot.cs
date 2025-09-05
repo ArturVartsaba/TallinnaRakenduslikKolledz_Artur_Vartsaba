@@ -53,7 +53,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CurrentGrade")
+                    b.Property<int?>("CurrentGrade")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentID")
