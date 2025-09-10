@@ -1,0 +1,58 @@
+﻿@model TallinnaRakenduslikKolledź.Models.Student
+
+@{
+	ViewData["Title"] = "Kustuta Õpilane";
+}
+
+<h1>Kustuta õpilane</h1>
+<h3>
+	Kas oled kindel, et tahad õpilast @Model.FirstName @Model.LastName eemaldada?
+</h3>
+<div>
+	<h4>Õpilane @Model.FirstName @Model.LastName</h4>
+	<hr/>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.LastName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.LastName)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.FirstName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.FirstName)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.EnrollmentDate)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.EnrollmentDate)</dd>
+	</dl>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Gender)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Gender)</dd>
+	</dl>
+
+	@if (Model.Enrollments != null)
+	{
+		foreach (var courseEnrollment in Model.Enrollments)
+		{
+			<dl class="row">
+				<dd class="col-sm-10">@(courseEnrollment)</dd>
+			</dl>
+		}
+	}
+	@if (Model.Age != null)
+	{
+		@Model.Age;
+	}
+	@if (Model.LanguageGroup != null)
+	{
+		foreach (var studentLanguageGroup in Model.LanguageGroup)
+		{
+			<dl class="row">
+				<dd class="col-sm-10">@(studentLanguageGroup)</dd>
+			</dl>
+		}
+	}
+</div>
+
+<form asp-action="Delete">
+	<input type="hidden" asp-for="Id"/>
+	<input type="submit" value="Kustuta õpilane" class="btn-danger"/> | <a asp-action="Index">Tühista</a>
+</form>
