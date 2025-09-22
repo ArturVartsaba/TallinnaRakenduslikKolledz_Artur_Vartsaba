@@ -1,0 +1,26 @@
+﻿@model TallinnaRakenduslikKolledz.Models.Instructor
+
+@{
+	ViewData["Title"] = "Vaata õpetaja andmeid";
+}
+
+<h1>Õpetaja andmed</h1>
+<div>
+	<h4>Õpetaja @Model.FirstName @Model.LastName</h4>
+	<hr/>
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.LastName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.LastName)</dd>
+	</dl>
+	<dl>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.FirstName)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.FirstName)</dd>
+	</dl>
+	<dl>
+		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.HireDate)</dt>
+		<dd class="col-sm-10">@Html.DisplayFor(Model => Model.HireDate)</dd>
+	</dl>
+</div>
+<div>
+	<a asp-action="Index">Mine tagasi loendisse</a>
+</div>
