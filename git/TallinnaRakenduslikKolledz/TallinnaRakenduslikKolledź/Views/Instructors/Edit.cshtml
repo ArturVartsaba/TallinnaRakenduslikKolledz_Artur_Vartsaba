@@ -1,16 +1,16 @@
-﻿@model TallinnaRakenduslikKolledź.Models.Student
+﻿@model TallinnaRakenduslikKolledz.Models.Instructor
 
 @{
-	ViewData["Title"] = "Muuda õpilast";
+	ViewData["Title"] = "Muuda õpetajat";
 }
 
-<h1>Muuda õpilase andmeid</h1>
-<hr />
-<div Class="row">
+<h1>Muuda õpetaja andmeid</h1>
+<hr/>
+<div class="row">
 	<div class="col-md-4">
 		<form asp-action="Edit">
 
-			<input type="hidden" asp-for="Id" />
+			<input type="hidden" asp-for="ID" />
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 			<div class="form-group">
