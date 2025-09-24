@@ -45,6 +45,46 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.ToTable("CourseAssignment", (string)null);
                 });
 
+            modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepartmentId"));
+
+                    b.Property<decimal>("Budget")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("InstructorID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte?>("RowVersion")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DepartmentId");
+
+                    b.HasIndex("InstructorID");
+
+                    b.ToTable("Department", (string)null);
+                });
+
             modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.Instructor", b =>
                 {
                     b.Property<int>("ID")
@@ -106,11 +146,16 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CourseId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Course", (string)null);
                 });
@@ -193,6 +238,15 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.Department", b =>
+                {
+                    b.HasOne("TallinnaRakenduslikKolledz.Models.Instructor", "Administrator")
+                        .WithMany()
+                        .HasForeignKey("InstructorID");
+
+                    b.Navigation("Administrator");
+                });
+
             modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.OfficeAssignment", b =>
                 {
                     b.HasOne("TallinnaRakenduslikKolledz.Models.Instructor", "Instructor")
@@ -202,6 +256,13 @@ namespace TallinnaRakenduslikKolledz.Migrations
                         .IsRequired();
 
                     b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("TallinnaRakenduslikKolledź.Models.Course", b =>
+                {
+                    b.HasOne("TallinnaRakenduslikKolledz.Models.Department", null)
+                        .WithMany("Courses")
+                        .HasForeignKey("DepartmentId");
                 });
 
             modelBuilder.Entity("TallinnaRakenduslikKolledź.Models.Enrollment", b =>
@@ -221,6 +282,11 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.Department", b =>
+                {
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.Instructor", b =>
