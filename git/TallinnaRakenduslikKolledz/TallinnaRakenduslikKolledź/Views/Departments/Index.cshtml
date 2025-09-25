@@ -15,6 +15,7 @@
 			<th>@Html.DisplayNameFor(Model => Model.Administrator)</th>
 			<th>@Html.DisplayNameFor(Model => Model.RowVersion)</th>
 			<th>@Html.DisplayNameFor(Model => Model.Location)</th>
+			<th>Tööriistad</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,9 +30,9 @@
 				<td>@Html.DisplayFor(modelItem => department.Location)</td>
 				<td>
 					@* /* Muuda */ *@
-
+					<a asp-action="Edit" asp-route-id="@department.DepartmentId">Muuda</a>
 					@* /* Vaata */ *@
-
+					<a asp-action="Details" asp-route-id="@department.DepartmentId">Vaata</a>
 					@* /* Vaata adminit */ *@
 
 					@* /* Kustuta */ *@

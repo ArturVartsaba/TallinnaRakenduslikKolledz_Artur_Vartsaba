@@ -12,7 +12,7 @@ namespace TallinnaRakenduslikKolledz.Models
         public DateTime StartDate { get; set; }
         public int? InstructorID { get; set; }
         public Instructor? Administrator { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }
         public byte? RowVersion { get; set; }
 
         /* 3 isiklikult unikaalset andmevälja kursusele juurde */

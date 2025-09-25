@@ -15,6 +15,7 @@ namespace TallinnaRakenduslikKolledź
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             var app = builder.Build();
+            CreateDbIIFNotExists(app);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -36,6 +37,23 @@ namespace TallinnaRakenduslikKolledź
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+        }
+        private static void CreateDbIIFNotExists(IHost app)
+        {
+            using (var scope = app.Services.CreateScope())
+            { 
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<SchoolContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred on creating the DB.");
+                }
+            }
         }
     }
 }

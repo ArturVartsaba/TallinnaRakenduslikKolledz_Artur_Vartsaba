@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TallinnaRakenduslikKolledz.Migrations
 {
     /// <inheritdoc />
-    public partial class newinit : Migration
+    public partial class dataworks : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
