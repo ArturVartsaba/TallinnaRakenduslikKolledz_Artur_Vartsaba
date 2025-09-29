@@ -12,8 +12,8 @@ using TallinnaRakenduslikKolledz.Data;
 namespace TallinnaRakenduslikKolledz.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20250925100429_dataworks")]
-    partial class dataworks
+    [Migration("20250925133338_courseChangedAgain")]
+    partial class courseChangedAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,7 +149,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentId")
+                    b.Property<int?>("DepartmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -158,7 +158,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("DepartmentID");
 
                     b.ToTable("Course", (string)null);
                 });
@@ -225,7 +225,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
             modelBuilder.Entity("TallinnaRakenduslikKolledz.Models.CourseAssignment", b =>
                 {
                     b.HasOne("TallinnaRakenduslikKolledź.Models.Course", "Course")
-                        .WithMany()
+                        .WithMany("CourseAssignments")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -263,9 +263,11 @@ namespace TallinnaRakenduslikKolledz.Migrations
 
             modelBuilder.Entity("TallinnaRakenduslikKolledź.Models.Course", b =>
                 {
-                    b.HasOne("TallinnaRakenduslikKolledz.Models.Department", null)
+                    b.HasOne("TallinnaRakenduslikKolledz.Models.Department", "Department")
                         .WithMany("Courses")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentID");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("TallinnaRakenduslikKolledź.Models.Enrollment", b =>
@@ -301,6 +303,8 @@ namespace TallinnaRakenduslikKolledz.Migrations
 
             modelBuilder.Entity("TallinnaRakenduslikKolledź.Models.Course", b =>
                 {
+                    b.Navigation("CourseAssignments");
+
                     b.Navigation("Enrollments");
                 });
 

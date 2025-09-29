@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TallinnaRakenduslikKolledz.Data;
 
@@ -11,9 +12,11 @@ using TallinnaRakenduslikKolledz.Data;
 namespace TallinnaRakenduslikKolledz.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20250925125915_courseChanged")]
+    partial class courseChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,7 +149,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DepartmentID")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -155,7 +158,7 @@ namespace TallinnaRakenduslikKolledz.Migrations
 
                     b.HasKey("CourseId");
 
-                    b.HasIndex("DepartmentID");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Course", (string)null);
                 });
@@ -262,7 +265,9 @@ namespace TallinnaRakenduslikKolledz.Migrations
                 {
                     b.HasOne("TallinnaRakenduslikKolledz.Models.Department", "Department")
                         .WithMany("Courses")
-                        .HasForeignKey("DepartmentID");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
                 });
