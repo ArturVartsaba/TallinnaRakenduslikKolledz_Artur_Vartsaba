@@ -2,6 +2,9 @@
 @{
 	ViewData["Title"] = "Osakond";
 }
+
+@if (ViewBag.Tegevus == "loomine")
+{
 <h2>Asuta uus osakond</h2>
 <hr>
 <div class="row">
@@ -49,4 +52,51 @@
 
 		</form>
 	</div>
+	</div>
+}
+else if (ViewBag.Tegevus == "muutmine")
+{
+<h1>Muuda osakonna andmeid</h1>
+<hr />
+<div Class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+
+			<input type="hidden" asp-for="DepartmentId" />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group">
+				<label asp-for="Budget" class="control-label"></label>
+				<input asp-for="Budget" class="control-label"/>
+				<span asp-validation-for="Budget" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="StartDate" class="control-label"></label>
+				<input asp-for="StartDate" class="control-label"/>
+				<span asp-validation-for="StartDate" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="control-label"/>
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Location" class="control-label"></label>
+				<input asp-for="Location" class="control-label"/>
+				<span asp-validation-for="Location" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" value="Muuda" class="btn btn-primary" />
+			</div>
+
+		</form>
+	</div>
 </div>
+<div>
+	<a asp-action="Index">Mine tagasi loendisse</a>
+</div>
+}

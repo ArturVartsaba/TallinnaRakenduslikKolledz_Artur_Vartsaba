@@ -22,6 +22,7 @@ namespace TallinnaRakenduslikKolledz.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Tegevus"] = "loomine";
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName");
             return View();
         }
@@ -76,6 +77,34 @@ namespace TallinnaRakenduslikKolledz.Controllers
             ViewData["Tegevus"] = "vaatamine";
             var department = await _context.Departments.FindAsync(id);
             return View("Delete", department);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            ViewData["Tegevus"] = "muutmine";
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var department = await _context.Departments.FindAsync(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View("Create" ,department);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Departments.Update(department);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View("Create" ,department);
         }
     }
 }

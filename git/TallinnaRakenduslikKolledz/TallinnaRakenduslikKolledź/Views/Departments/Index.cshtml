@@ -30,16 +30,16 @@
 				<td>@Html.DisplayFor(modelItem => department.RowVersion)</td>
 				<td>@Html.DisplayFor(modelItem => department.Location)</td>
 				<td>
+					
 					@* /* Muuda */ *@
-					
 					<a asp-action="Edit" asp-route-id="@department.DepartmentId">Muuda</a>
+
 					@* /* Vaata */ *@
-					
 					<a asp-action="Details" asp-route-id="@department.DepartmentId">Vaata</a>
-					@* /* Vaata adminit */ *@
 
 					@* /* Kustuta */ *@
 					<a asp-action="delete" asp-route-id="@department.DepartmentId" class="btn btn-danger">Eemalda</a>
+				
 				</td>
 			</tr>	
 		}
