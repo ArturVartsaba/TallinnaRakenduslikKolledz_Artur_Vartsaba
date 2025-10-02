@@ -37,6 +37,7 @@
 					@Html.DisplayFor(modelItem => course.Department.Name)
 				</td>
 				<td>
+					<a asp-action="Details" asp-route-id="@course.ID">Vaata</a>
 					<a asp-action="Delete" asp-route-id="@course.ID">Kustuta</a>
 				</td>
 			</tr>

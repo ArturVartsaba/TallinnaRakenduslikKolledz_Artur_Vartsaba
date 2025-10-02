@@ -45,6 +45,7 @@ namespace TallinnaRakenduslikKolledz.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["Tegevus"] = "kustutamine";
             if (id == null || _context.Courses == null) 
             { 
                 return NotFound();
@@ -83,6 +84,14 @@ namespace TallinnaRakenduslikKolledz.Controllers
                                    orderby d.Name
                                    select d;
             ViewBag.DepartmentID = new SelectList(departmentsQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            ViewData["Tegevus"] = "vaatamine";
+            var course = await _context.Courses.FindAsync(id);
+            return View("Delete", course);
         }
     }
 }
