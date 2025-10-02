@@ -1,4 +1,4 @@
-﻿namespace TallinnaRakenduslikKolledź.Models
+﻿namespace TallinnaRakenduslikKolledz.Models
 {
     public enum Grade
     {

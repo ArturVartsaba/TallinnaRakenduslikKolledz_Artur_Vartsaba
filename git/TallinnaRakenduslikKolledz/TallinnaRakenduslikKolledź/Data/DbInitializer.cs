@@ -32,13 +32,13 @@ namespace TallinnaRakenduslikKolledz.Data
             }
             var courses = new Course[]
             {
-                new Course {CourseId=1001, Title = "Programmeerimise Alused", Credits = 3},
-                new Course {CourseId=2002, Title = "Programmeerimise 1", Credits = 6},
-                new Course {CourseId=3003, Title = "Programmeerimise 2", Credits = 9},
-                new Course {CourseId=2003, Title = "Tarkvara Arendusprotsess", Credits = 3},
-                new Course {CourseId=1002, Title = "Multimeedia", Credits = 3},
-                new Course {CourseId=3001, Title = "Hajusrakenduste Alused", Credits = 3},
-                new Course {CourseId=9001, Title = "Cryptobro 101", Credits = 0}
+                new Course {ID=1001, Title = "Programmeerimise Alused", Credits = 3},
+                new Course {ID=2002, Title = "Programmeerimise 1", Credits = 6},
+                new Course {ID=3003, Title = "Programmeerimise 2", Credits = 9},
+                new Course {ID=2003, Title = "Tarkvara Arendusprotsess", Credits = 3},
+                new Course {ID=1002, Title = "Multimeedia", Credits = 3},
+                new Course {ID=3001, Title = "Hajusrakenduste Alused", Credits = 3},
+                new Course {ID=9001, Title = "Cryptobro 101", Credits = 0}
             };
             context.Courses.AddRange(courses);
             context.SaveChanges();

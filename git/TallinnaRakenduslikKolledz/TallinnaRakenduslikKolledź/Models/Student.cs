@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TallinnaRakenduslikKolledź.Models
+namespace TallinnaRakenduslikKolledz.Models
 {
     public class Student
     {

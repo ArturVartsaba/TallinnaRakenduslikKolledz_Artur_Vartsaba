@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TallinnaRakenduslikKolledz.Data;
-using TallinnaRakenduslikKolledź.Models;
+using TallinnaRakenduslikKolledz.Models;
 
 namespace TallinnaRakenduslikKolledz.Controllers
 {
@@ -13,19 +13,19 @@ namespace TallinnaRakenduslikKolledz.Controllers
         {
             _context = context;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            var courses = _context.Courses.Include(c => c.Department)
-                .AsNoTracking();
-
+            var courses =  await _context.Courses.Include(c => c.Department)
+                .AsNoTracking()
+                .ToListAsync();
             return View(courses);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            PopulateDepartmentsDropDownList();
+            //PopulateDepartmentsDropDownList();
             return View();
         }
 
@@ -33,11 +33,11 @@ namespace TallinnaRakenduslikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Course course) 
         { 
-            if (!ModelState.IsValid) 
+            if (ModelState.IsValid) 
             {
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
-                PopulateDepartmentsDropDownList(course.DepartmentID);
+                //PopulateDepartmentsDropDownList(course.DepartmentID);
             }
             return RedirectToAction("Index");
         }
@@ -52,13 +52,14 @@ namespace TallinnaRakenduslikKolledz.Controllers
             var courses = await _context.Courses
                 .Include(c => c.Department)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.CourseId == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (courses == null) 
             { 
                 return NotFound();
             }
             return View(courses);
         }
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

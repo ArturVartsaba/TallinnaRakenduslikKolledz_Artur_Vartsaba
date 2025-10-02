@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TallinnaRakenduslikKolledź.Models.Student>
+﻿@model IEnumerable<TallinnaRakenduslikKolledz.Models.Student>
 @{
 	ViewData["Title"] = "Õpilased";
 }
@@ -19,7 +19,7 @@
 			@Html.DisplayNameFor(model => model.First().EnrollmentDate)
 			</th>
 			<th>
-			@Html.DisplayNameFor(model => model.First().Age)
+			@Html.DisplayNameFor(model => model.First().Gender)
 			</th>
 			<th>
 				Tööriistad
@@ -40,7 +40,7 @@
 				@Html.DisplayFor(modelItem => student.EnrollmentDate)
 				</td>
 				<td>
-				@Html.DisplayFor(modelItem => student.Age)
+				@Html.DisplayFor(modelItem => student.Gender)
 				</td>
 				<td>
 					<a asp-action="Edit" asp-route-id="@student.Id">Muuda</a>

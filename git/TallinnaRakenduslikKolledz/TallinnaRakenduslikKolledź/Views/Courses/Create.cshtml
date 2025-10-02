@@ -1,6 +1,6 @@
-﻿@model TallinnaRakenduslikKolledź.Models.Course;
+﻿@model TallinnaRakenduslikKolledz.Models.Course
 @{
-	ViewData["Title"] = "Uus kursus";
+	ViewData["Title"] = "Uus Kursus";
 }
 <h1>Tee uus kursus</h1>
 <h4>Siseta info:</h4>
@@ -9,11 +9,6 @@
 	<div class="col-md-4">
 		<form asp-action="Create">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div>
-				<label asp-for="CourseId" class="control-label"></label>
-				<input asp-for="CourseId" class="form-control"/>
-				<span asp-validation-for="CourseId" class="text-danger"></span>
-			</div>
 			<div>
 				<label asp-for="Title" class="control-label"></label>
 				<input asp-for="Title" class="form-control" />
