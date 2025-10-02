@@ -75,7 +75,7 @@ namespace TallinnaRakenduslikKolledz.Controllers
         { 
             ViewData["Tegevus"] = "vaatamine";
             var department = await _context.Departments.FindAsync(id);
-            return View("Delete");
+            return View("Delete", department);
         }
     }
 }

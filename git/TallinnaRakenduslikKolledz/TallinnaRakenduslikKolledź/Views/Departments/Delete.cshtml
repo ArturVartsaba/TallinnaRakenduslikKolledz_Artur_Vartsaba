@@ -4,26 +4,60 @@
 }
 <h2>@Html.DisplayFor(modelItem => Model.Name)</h2>
 
-<p>
-	<h3>Kustuta Osakond:</h3>
-</p>
-<div>
-	<hr/>
-	<dl class="row">
-		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Name)</dt>
-		<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Name)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentId)</dt>
-		<dt class="col-sm-10">@Html.DisplayFor(Model => Model.DepartmentId)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Budget)</dt>
-		<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Budget)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.StartDate)</dt>
-		<dt class="col-sm-10">@Html.DisplayFor(Model => Model.StartDate)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Location)</dt>
-		<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Location)</dt>
-	</dl>
-	<form asp-action="Delete">
-		<input type="hidden" asp-for="DepartmentId"/>
-		<input type="hidden" asp-for="RowVersion"/>
-		<input type="submit" value="Kustuta" class="btn btn-danger" /> | <a asp-action="Index"> Tühista</a>
-	</form>
-</div>
+@if (ViewBag.Tegevus == "kustutamine")
+{
+	<p>
+		<h3>Kustuta Osakond:</h3>
+	</p>
+	<div>
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Name)</dt>
+			<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Name)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentId)</dt>
+			<dt class="col-sm-10">@Html.DisplayFor(Model => Model.DepartmentId)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Budget)</dt>
+			<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Budget)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.StartDate)</dt>
+			<dt class="col-sm-10">@Html.DisplayFor(Model => Model.StartDate)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Location)</dt>
+			<dt class="col-sm-10">@Html.DisplayFor(Model => Model.Location)</dt>
+		</dl>
+		<form asp-action="Delete">
+			<input type="hidden" asp-for="DepartmentId" />
+			<input type="hidden" asp-for="RowVersion" />
+			<input type="submit" value="Kustuta" class="btn btn-danger" /> | <a asp-action="Index"> Tühista</a>
+		</form>
+	</div>
+}
+else if (ViewBag.Tegevus == "vaatamine")
+{
+	<h1>Osakonna andmed</h1>
+	<div>
+		<h4>Osakond @Model.Name</h4>
+		<hr/>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Name)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Name)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.DepartmentId)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.DepartmentId)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Budget)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Budget)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.StartDate)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.StartDate)</dd>
+		</dl>
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(Model => Model.Location)</dt>
+			<dd class="col-sm-10">@Html.DisplayFor(Model => Model.Location)</dd>
+		</dl>
+	</div>
+	<div>
+		<a asp-action="Index">Mine tagasi loendisse</a>
+	</div>
+}

@@ -6,6 +6,7 @@
 <p>
 	<a asp-action="Create">Loo uus osakond</a>
 </p>
+
 <table class="table">
 	<thead>
 		<tr>
@@ -30,8 +31,10 @@
 				<td>@Html.DisplayFor(modelItem => department.Location)</td>
 				<td>
 					@* /* Muuda */ *@
+					
 					<a asp-action="Edit" asp-route-id="@department.DepartmentId">Muuda</a>
 					@* /* Vaata */ *@
+					
 					<a asp-action="Details" asp-route-id="@department.DepartmentId">Vaata</a>
 					@* /* Vaata adminit */ *@
 
