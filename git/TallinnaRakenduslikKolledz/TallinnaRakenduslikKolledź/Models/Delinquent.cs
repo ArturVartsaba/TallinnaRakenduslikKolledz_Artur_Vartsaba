@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace TallinnaRakenduslikKolledz.Models
 {
@@ -10,7 +11,9 @@ namespace TallinnaRakenduslikKolledz.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [EnumDataType(typeof(Violation))]
         public Violation? ViolationType { get; set; }
+        [EnumDataType(typeof(Position))]
         public Position? Position { get; set; }
         public string? Status { get; set; }
     }

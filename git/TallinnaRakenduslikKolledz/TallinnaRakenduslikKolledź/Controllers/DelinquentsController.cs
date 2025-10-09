@@ -17,5 +17,23 @@ namespace TallinnaRakenduslikKolledz.Controllers
         {
             return View(await _context.Delinquents.ToListAsync());
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,ViolationType,Position,Status")] Delinquent delinquent)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Delinquents.Add(delinquent);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(delinquent);
+        }
     }
 }
