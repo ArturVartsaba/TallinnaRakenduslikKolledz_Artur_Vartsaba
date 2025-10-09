@@ -6,11 +6,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TallinnaRakenduslikKolledz.Migrations
 {
     /// <inheritdoc />
-    public partial class course : Migration
+    public partial class delinquent : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Delinquent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ViolationType = table.Column<int>(type: "int", nullable: true),
+                    Position = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Delinquent", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Instructor",
                 columns: table => new
@@ -199,6 +216,9 @@ namespace TallinnaRakenduslikKolledz.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CourseAssignment");
+
+            migrationBuilder.DropTable(
+                name: "Delinquent");
 
             migrationBuilder.DropTable(
                 name: "Enrollment");
