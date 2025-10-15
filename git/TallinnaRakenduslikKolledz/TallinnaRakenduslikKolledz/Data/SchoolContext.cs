@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
-using TallinnaRakenduslikKolledź.Models;
+using TallinnaRakenduslikKolledz.Models;
 using TallinnaRakenduslikKolledz.Models;
 
 namespace TallinnaRakenduslikKolledz.Data

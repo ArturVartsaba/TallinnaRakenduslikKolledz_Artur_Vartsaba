@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TallinnaRakenduslikKolledź.Models;
+using TallinnaRakenduslikKolledz.Models;
 
-namespace TallinnaRakenduslikKolledź.Controllers
+namespace TallinnaRakenduslikKolledz.Controllers
 {
     public class HomeController : Controller
     {

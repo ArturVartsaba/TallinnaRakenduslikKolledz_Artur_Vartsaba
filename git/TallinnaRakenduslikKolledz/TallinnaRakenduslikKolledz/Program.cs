@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TallinnaRakenduslikKolledz.Data;
 
-namespace TallinnaRakenduslikKolledź
+namespace TallinnaRakenduslikKolledz
 {
     public class Program
     {

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TallinnaRakenduslikKolledź.Models;
+using TallinnaRakenduslikKolledz.Models;
 
 namespace TallinnaRakenduslikKolledz.Models
 {

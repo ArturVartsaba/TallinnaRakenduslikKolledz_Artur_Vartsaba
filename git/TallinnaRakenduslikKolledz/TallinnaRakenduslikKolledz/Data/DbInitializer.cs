@@ -1,4 +1,4 @@
-﻿using TallinnaRakenduslikKolledź.Models;
+﻿using TallinnaRakenduslikKolledz.Models;
 using TallinnaRakenduslikKolledz.Models;
 
 namespace TallinnaRakenduslikKolledz.Data
