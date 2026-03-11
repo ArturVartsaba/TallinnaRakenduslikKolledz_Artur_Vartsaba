@@ -15,7 +15,7 @@ namespace TallinnaRakenduslikKolledz.Models
         public ICollection<Course>? Courses { get; set; }
         public byte? RowVersion { get; set; }
 
-        /* 3 isiklikult unikaalset andmevälja kursusele juurde */
+        /* 3 isiklikult unikaalset andmevälja juurde */
 
         public string? Email { get; set; }
         public string? Location { get; set; }

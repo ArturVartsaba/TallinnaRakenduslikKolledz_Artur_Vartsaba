@@ -9,10 +9,12 @@ namespace TallinnaRakenduslikKolledz.Controllers
     public class DepartmentsController : Controller
     {
         private readonly SchoolContext _context;
+
         public DepartmentsController(SchoolContext context)
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
             var schoolContext = _context.Departments.Include(d => d.Administrator);
@@ -23,10 +25,10 @@ namespace TallinnaRakenduslikKolledz.Controllers
         public IActionResult Create()
         {
             ViewData["Tegevus"] = "loomine";
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName");
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName");
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Budget,StartDate,RowVersion,InstructorID,Location")] Department department)
@@ -38,6 +40,7 @@ namespace TallinnaRakenduslikKolledz.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName", department.InstructorID);
+            ViewData["Tegevus"] = "loomine";
             return View(department);
         }
 
@@ -53,7 +56,7 @@ namespace TallinnaRakenduslikKolledz.Controllers
                 .Include(d => d.Administrator)
                 .FirstOrDefaultAsync(m => m.DepartmentId == id);
             if (department == null)
-            { 
+            {
                 return NotFound();
             }
             return View(department);
@@ -61,10 +64,10 @@ namespace TallinnaRakenduslikKolledz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(Department department) 
+        public async Task<IActionResult> Delete(Department department)
         {
-            if (await _context.Departments.AnyAsync(m => m.DepartmentId == department.DepartmentId)) 
-            { 
+            if (await _context.Departments.AnyAsync(m => m.DepartmentId == department.DepartmentId))
+            {
                 _context.Departments.Remove(department);
                 await _context.SaveChangesAsync();
             }
@@ -72,8 +75,8 @@ namespace TallinnaRakenduslikKolledz.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int? id) 
-        { 
+        public async Task<IActionResult> Details(int? id)
+        {
             ViewData["Tegevus"] = "vaatamine";
             var department = await _context.Departments.FindAsync(id);
             return View("Delete", department);
@@ -92,8 +95,9 @@ namespace TallinnaRakenduslikKolledz.Controllers
             {
                 return NotFound();
             }
-            return View("Create" ,department);
+            return View("Create", department);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Department department)
@@ -104,7 +108,8 @@ namespace TallinnaRakenduslikKolledz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View("Create" ,department);
+            ViewData["Tegevus"] = "muutmine";
+            return View("Create", department);
         }
     }
 }
